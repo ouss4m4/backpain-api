@@ -20,6 +20,7 @@ export const productListQuery = (qts: string): string => {
 export const productDetailQuery = function(id: string): string {
   return `{
     product(id: "${id}") {
+      title
       totalVariants
       variants(first: 3){
         edges{
