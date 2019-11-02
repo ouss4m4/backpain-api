@@ -1,6 +1,6 @@
 export const productListQuery = (qts: string): string => {
   return `{
-        products(first: "${qts}") {
+        products(first: ${qts}) {
             edges {
                 node {
                     id
