@@ -1,5 +1,5 @@
 import { Request, Response, Application } from "express";
-import { ProductController } from "../controllers/product-controller";
+import { ProductController } from "../controllers/productControllers/product-controller";
 import { ErrorHandler } from "../middlewares/errorHandler";
 
 export class ProductRoute {
@@ -11,5 +11,8 @@ export class ProductRoute {
     app
       .route("/products")
       .get((req, res) => this.productController.getProductsList(req, res));
+    app
+      .route("/product")
+      .get((req, res) => this.productController.getProductByID(req, res));
   }
 }
