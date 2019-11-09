@@ -17,6 +17,18 @@ export const productListQuery = (qts: string): string => {
     }`;
 };
 
+export const collectionsQuery = (qts: string): string => {
+  return ` {
+    collections(first: ${qts}){
+      edges{
+        node{
+          id
+          title
+        }
+      }
+    }
+  }`;
+};
 export const productDetailQuery = function(id: string): string {
   return `{
     product(id: "${id}") {

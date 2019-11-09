@@ -65,3 +65,18 @@ export interface IProductDetails {
     }[];
   };
 }
+
+export interface ICollectionQlAnswer {
+  data: {
+    collections: {
+      edges: ICollection[];
+    };
+  };
+}
+
+interface ICollection {
+  node: {
+    id: string;
+    title: string;
+  };
+}
