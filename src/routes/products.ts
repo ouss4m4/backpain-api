@@ -11,6 +11,9 @@ export class ProductRoute {
     app
       .route("/products")
       .get((req, res) => this.productController.getProductsList(req, res));
+      app.route("/products/:id").get(
+        (req, res )=> this.productController.getCollectionProducts(req, res)
+      )
     app
       .route("/product")
       .get((req, res) => this.productController.getProductByID(req, res));

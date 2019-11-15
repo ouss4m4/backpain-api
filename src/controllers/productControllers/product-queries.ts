@@ -84,3 +84,19 @@ export const productDetailQuery = function(id: string): string {
     }
   }`;
 };
+
+export const collectionProductsQuery = (id: string) => {
+  return `
+  {
+    collection(id: "${id}"){
+      products(first: 20){
+        edges{
+          node{
+            title
+          }
+        }
+      }
+    }
+  }
+  `;
+};

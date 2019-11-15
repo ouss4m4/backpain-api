@@ -8,7 +8,8 @@ import {
 import {
   productListQuery,
   productDetailQuery,
-  collectionsQuery
+  collectionsQuery,
+  collectionProductsQuery
 } from "./product-queries";
 import { vars } from "../../utils/consts";
 
@@ -30,6 +31,17 @@ export class ProductController {
 
   public async getProductsList(req: Request, res: Response) {
     let query = productListQuery("10");
+    const qlResult = await axios.post<IProductQLAnswer>(vars.baseUrl, query, {
+      headers: {
+        "content-type": "application/graphql",
+        "X-Shopify-Access-Token": "6cd1218fa4d12785cb7c665a123f0a9c"
+      }
+    });
+    res.status(200).send(qlResult.data.data.products.edges);
+  }
+
+  public async getCollectionProducts(req: Request, res: Response) {
+    let query = collectionProductsQuery(req.params.id);
     const qlResult = await axios.post<IProductQLAnswer>(vars.baseUrl, query, {
       headers: {
         "content-type": "application/graphql",
