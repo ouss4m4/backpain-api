@@ -5,7 +5,16 @@ export interface IProductQLAnswer {
     };
   };
 }
+export interface ICollectionProductQLAnswer {
+  data: {
+    collection: {
+      products: {
+        edges: ISingleProductInfo[];
+      };
+    }
+  }  
 
+}
 export interface IProductDetailsQLAnswer {
   data: {
     product: IProductDetails;

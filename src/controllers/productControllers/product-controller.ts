@@ -3,7 +3,8 @@ import axios from "axios";
 import {
   IProductQLAnswer,
   IProductDetailsQLAnswer,
-  ICollectionQlAnswer
+  ICollectionQlAnswer,
+  ICollectionProductQLAnswer
 } from "../../models/graphql-response.model";
 import {
   productListQuery,
@@ -41,14 +42,18 @@ export class ProductController {
   }
 
   public async getCollectionProducts(req: Request, res: Response) {
-    let query = collectionProductsQuery(req.params.id);
-    const qlResult = await axios.post<IProductQLAnswer>(vars.baseUrl, query, {
-      headers: {
-        "content-type": "application/graphql",
-        "X-Shopify-Access-Token": "6cd1218fa4d12785cb7c665a123f0a9c"
+    let query = collectionProductsQuery(req.query.id);
+    const qlResult = await axios.post<ICollectionProductQLAnswer>(
+      vars.baseUrl,
+      query,
+      {
+        headers: {
+          "content-type": "application/graphql",
+          "X-Shopify-Access-Token": "6cd1218fa4d12785cb7c665a123f0a9c"
+        }
       }
-    });
-    res.status(200).send(qlResult.data.data.products.edges);
+    );
+    res.status(200).send(qlResult.data.data.collection.products.edges);
   }
 
   public async getCollectionsList(req: Request, res: Response) {

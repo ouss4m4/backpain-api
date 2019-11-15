@@ -92,7 +92,14 @@ export const collectionProductsQuery = (id: string) => {
       products(first: 20){
         edges{
           node{
+            id
             title
+            description
+            descriptionHtml
+            featuredImage {
+                originalSrc
+                altText
+            }
           }
         }
       }
