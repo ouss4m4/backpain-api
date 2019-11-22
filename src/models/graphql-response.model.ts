@@ -11,9 +11,8 @@ export interface ICollectionProductQLAnswer {
       products: {
         edges: ISingleProductInfo[];
       };
-    }
-  }  
-
+    };
+  };
 }
 export interface IProductDetailsQLAnswer {
   data: {
@@ -29,6 +28,16 @@ export interface ISingleProductInfo {
     featuredImage: {
       originalSrc: string;
       altText: string;
+    };
+    priceRange: {
+      minVariantPrice: {
+        amount: string;
+        currencyCode: string;
+      };
+      maxVariantPrice: {
+        amount: string;
+        currencyCode: string;
+      };
     };
   };
 }

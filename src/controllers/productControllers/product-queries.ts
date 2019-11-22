@@ -1,18 +1,29 @@
 export const productListQuery = (qts: string): string => {
   return `{
         products(first: ${qts}) {
-            edges {
-                node {
-                    id
-                    title
-                    description
-                    descriptionHtml
-                    featuredImage {
-                        originalSrc
-                        altText
-                    }
+          edges {
+            node {
+              id
+              title
+              description
+              descriptionHtml
+              featuredImage {
+                originalSrc
+                altText
+              }
+              priceRange {
+                minVariantPrice {
+                  amount
+                  currencyCode
                 }
-            }
+                maxVariantPrice {
+                  amount
+                  currencyCode
+                }
+              }
+            
+          }
+        }
         }
     }`;
 };
@@ -34,17 +45,11 @@ export const productDetailQuery = function(id: string): string {
     product(id: "${id}") {
       title
       totalVariants
-      variants(first: 3){
-        edges{
-          node{
-            displayName
-            title
-            price
-          }
-        }
-      }
       options {
         id
+        name
+        position
+        values
       }
       priceRange {
         minVariantPrice {
@@ -81,6 +86,16 @@ export const productDetailQuery = function(id: string): string {
           }
         }
       }
+    variants(first: 3){
+        edges{
+          node{
+            id
+            displayName
+            title
+            price
+          }
+        }
+      }
     }
   }`;
 };
@@ -99,6 +114,16 @@ export const collectionProductsQuery = (id: string) => {
             featuredImage {
                 originalSrc
                 altText
+            }
+            priceRange {
+              minVariantPrice {
+                amount
+                currencyCode
+              }
+              maxVariantPrice {
+                amount
+                currencyCode
+              }
             }
           }
         }
